@@ -39,7 +39,6 @@ def render_missing(itmdt: Intermediate, cfg: Config) -> Dict[str, Any]:
     """
     Render the visualizations from plot_missing
     """
-
     if itmdt.visual_type == "missing_impact":
         return render_missing_impact(itmdt, cfg)
     elif itmdt.visual_type == "missing_impact_1vn":
@@ -78,13 +77,7 @@ def tweak_figure(fig: Figure) -> Figure:
     return fig
 
 
-def render_dist(
-    df: pd.DataFrame,
-    x: str,
-    typ: str,
-    plot_width: int,
-    plot_height: int,
-) -> Figure:
+def render_dist(df: pd.DataFrame, x: str, typ: str, plot_width: int, plot_height: int,) -> Figure:
     """
     Render a distribution, CDF or PDF
     """
@@ -112,11 +105,7 @@ def render_dist(
     for idx, label in enumerate(LABELS):
         group = df[df[f"{typ}_label"] == label]
         fig.line(
-            x=f"x_{typ}",
-            y=typ,
-            source=group,
-            color=CATEGORY10[idx],
-            legend_label=label,
+            x=f"x_{typ}", y=typ, source=group, color=CATEGORY10[idx], legend_label=label,
         )
 
     relocate_legend(fig, "left")
@@ -243,22 +232,10 @@ def render_boxwhisker(df: pd.DataFrame, plot_width: int, plot_height: int) -> Fi
 
     # boxes
     fig.vbar(  # pylint: disable=too-many-function-args
-        "label",
-        0.7,
-        "q2",
-        "q3",
-        source=df,
-        fill_color=CATEGORY20[0],
-        line_color="black",
+        "label", 0.7, "q2", "q3", source=df, fill_color=CATEGORY20[0], line_color="black",
     )
     fig.vbar(  # pylint: disable=too-many-function-args
-        "label",
-        0.7,
-        "q2",
-        "q1",
-        source=df,
-        fill_color=CATEGORY20[0],
-        line_color="black",
+        "label", 0.7, "q2", "q1", source=df, fill_color=CATEGORY20[0], line_color="black",
     )
     # whiskers (almost-0 height rects simpler than segments)
     fig.rect(  # pylint: disable=too-many-function-args
@@ -291,9 +268,7 @@ def create_color_mapper() -> Tuple[LinearColorMapper, ColorBar]:
     return mapper, colorbar
 
 
-def create_color_mapper_heatmap(
-    palette: Sequence[str],
-) -> Tuple[LinearColorMapper, ColorBar]:
+def create_color_mapper_heatmap(palette: Sequence[str],) -> Tuple[LinearColorMapper, ColorBar]:
     """
     Create a color mapper and a colorbar for heatmap
     """
@@ -314,7 +289,7 @@ def render_missing_impact(itmdt: Intermediate, cfg: Config) -> Dict[str, Any]:
     """
     Render correlation heatmaps in to tabs
     """
-    plot_width = cfg.plot.width if cfg.plot.width is not None else 400
+    plot_width = cfg.plot.width if cfg.plot.width is not None else 450
     plot_height = cfg.plot.height if cfg.plot.height is not None else 400
 
     tabs: List[Panel] = []
@@ -350,7 +325,7 @@ def render_missing_impact(itmdt: Intermediate, cfg: Config) -> Dict[str, Any]:
         "tabledata": {"Missing Statistics": stat_dict} if cfg.stats.enable else {},
         "layout": [panel.child.children[0] for panel in tabs],
         "meta": [panel.title for panel in tabs],
-        "container_width": plot_width + 160,
+        "container_width": plot_width + 200,
         "how_to_guide": htgs,
     }
 
@@ -435,19 +410,17 @@ def render_heatmaps(df: Optional[pd.DataFrame], plot_width: int, plot_height: in
 
 
 def render_bar_chart(
-    data: Tuple[np.ndarray, np.ndarray, np.ndarray],
-    yscale: str,
-    plot_width: int,
-    plot_height: int,
+    data: Tuple[np.ndarray, np.ndarray, np.ndarray], yscale: str, plot_width: int, plot_height: int,
 ) -> Figure:
     """
     Render a bar chart for the missing and present values
     """
+    # print(plot_width, plot_height)
     pres_cnts, null_cnts, cols = data
     df = pd.DataFrame({"Present": pres_cnts, "Missing": null_cnts}, index=cols)
 
-    if len(df) > 20:
-        plot_width = 28 * len(df)
+    # if len(df) > 20:
+    #     plot_width = 28 * len(df)
 
     fig = Figure(
         x_range=list(df.index),
@@ -537,8 +510,8 @@ def render_missing_spectrum(
     x_range = FactorRange(*df["column_with_perc"].unique())
     minimum, maximum = df["location"].min(), df["location"].max()
     y_range = Range1d(maximum + radius, minimum - radius)
-    if df["column"].nunique() > 20:
-        plot_width = 28 * df["column"].nunique()
+    # if df["column"].nunique() > 20:
+    #     plot_width = 28 * df["column"].nunique()
 
     fig = tweak_figure(
         Figure(
@@ -578,16 +551,12 @@ def render_dendrogram(dend: Dict["str", Any], plot_width: int, plot_height: int)
     # list of lists of dcoords and icoords from scipy.dendrogram
     xs, ys, cols = dend["icoord"], dend["dcoord"], dend["ivl"]
 
-    # if the number of columns is greater than 20, make the plot wider
-    if len(cols) > 20:
-        plot_width = 28 * len(cols)
+    # # if the number of columns is greater than 20, make the plot wider
+    # if len(cols) > 20:
+    #     plot_width = 28 * len(cols)
 
     fig = Figure(
-        plot_width=plot_width,
-        plot_height=plot_height,
-        toolbar_location=None,
-        tools="",
-        title=" ",
+        plot_width=plot_width, plot_height=plot_height, toolbar_location=None, tools="", title=" ",
     )
 
     # round the coordinates to integers, and plot the dendrogram
@@ -602,9 +571,7 @@ def render_dendrogram(dend: Dict["str", Any], plot_width: int, plot_height: int)
     source = ColumnDataSource(dict(x=h_lns_x, y=h_lns_y, n=null_mismatch_vals))
     h_lns = fig.multi_line(xs="x", ys="y", source=source, line_color="#8073ac")
     hover_pts = HoverTool(
-        renderers=[h_lns],
-        tooltips=[("Average distance", "@n{0.1f}")],
-        line_policy="interp",
+        renderers=[h_lns], tooltips=[("Average distance", "@n{0.1f}")], line_policy="interp",
     )
     fig.add_tools(hover_pts)
 
