@@ -70,6 +70,7 @@ Let's check out the several benefits that Connector offers:
 - **A unified API:** You can fetch data using one or two lines of code to get data from [tens of popular websites](https://github.com/sfu-db/DataConnectorConfigs).
 - **Auto Pagination:** Do you want to invoke a Web API that could return a large result set and need to handle it through pagination? Connector automatically does the pagination for you! Just specify the desired number of returned results (argument `_count`) without getting into unnecessary detail about a specific pagination scheme.
 - **Smart API request strategy:** Do you want to fetch results more quickly by making concurrent requests to Web APIs? Through the `_concurrency` argument, Connector simplifies concurrency, issuing API requests in parallel while respecting the API's rate limit policy.
+
 #### How to fetch all publications of Andrew Y. Ng?
 
 ```python
@@ -100,7 +101,7 @@ The following code demonstrates how to use DataPrep.EDA to create a profile repo
 from dataprep.datasets import load_dataset
 from dataprep.eda import create_report
 df = load_dataset("titanic")
-create_report(df).show_browser()
+create_report(df).show()
 ```
 
 Click [here](https://sfu-db.github.io/dataprep/_downloads/c9bf292ac949ebcf9b65bb2a2bc5a149/titanic_dp.html) to see the generated report of the above code.
@@ -131,7 +132,7 @@ DataPrep.Clean contains simple functions designed for cleaning and validating da
 
 The following example shows how to clean and standardize a column of country names.
 
-``` python
+```python
 from dataprep.clean import clean_country
 import pandas as pd
 df = pd.DataFrame({'country': ['USA', 'country: Canada', '233', ' tr ', 'NA']})
@@ -147,7 +148,7 @@ df2
 
 Type validation is also supported:
 
-``` python
+```python
 from dataprep.clean import validate_country
 series = validate_country(df['country'])
 series
@@ -184,7 +185,7 @@ There are many ways to contribute to DataPrep.
 Please take a look at our [wiki] for development documentations!
 
 [build status]: https://img.shields.io/circleci/build/github/sfu-db/dataprep/master?style=flat-square&token=f68e38757f5c98771f46d1c7e700f285a0b9784d
-[Forum]: https://github.com/sfu-db/dataprep/discussions
+[forum]: https://github.com/sfu-db/dataprep/discussions
 [wiki]: https://github.com/sfu-db/dataprep/wiki
 [examples]: https://github.com/sfu-db/dataprep/tree/master/examples
 [twitter]: https://img.shields.io/twitter/follow/sfu_db?style=social
