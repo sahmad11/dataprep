@@ -1,6 +1,5 @@
 """ProgressBar shows the how many dask tasks finished/remains using tqdm."""
 
-import sys
 from time import time
 from typing import Any, Dict, Optional, Tuple, Union
 
@@ -145,12 +144,11 @@ class ProgressBar(Callback):  # type: ignore
 
         self._pbar_runtime += time() - then
 
-        if self._pbar_runtime > 0.1 * (time() - self._started) and self._pbar_runtime > 1:
-            print(
-                "[ProgressBar] ProgressBar takes additional 10%+ of the computation time,"
-                " consider disable it by passing 'progress=False' to the plot function.",
-                file=sys.stderr,
-            )
+        # if self._pbar_runtime > 0.1 * (time() - self._started) and self._pbar_runtime > 1:
+        #     warnings.warn(
+        #         "[ProgressBar] ProgressBar takes additional 10%+ of the computation time,"
+        #         " consider disable it by passing 'progress=False' to the plot function.",
+        #     )
 
         self._state = None
         self._started = None

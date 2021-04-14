@@ -4,7 +4,7 @@ Computations for plot(df, ...)
 
 
 from typing import Optional, Union, List, Dict, Any, Tuple
-
+import warnings
 import dask.dataframe as dd
 import pandas as pd
 
@@ -58,6 +58,8 @@ def compute(
         or dtype = Continuous() or dtype = "Continuous" or dtype = Continuous()
     """
     # pylint: disable=too-many-arguments
+
+    warnings.simplefilter(action="ignore", category=FutureWarning)
 
     params, exlude, ddf = process_latlong(df, x, y, z)
     ddf = preprocess_dataframe(ddf, excluded_columns=exlude)

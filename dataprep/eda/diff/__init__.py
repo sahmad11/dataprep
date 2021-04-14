@@ -3,6 +3,7 @@
 """
 
 from typing import Optional, Union, List, Dict, Any
+import warnings
 import dask.dataframe as dd
 import pandas as pd
 
@@ -57,6 +58,11 @@ def plot_diff(
     """
     # pylint: disable=too-many-arguments
     cfg = Config.from_dict(display, config)
+
+    warnings.filterwarnings(
+        "ignore",
+        message="This pattern has match groups. To actually get the groups, use str.extract",
+    )
 
     with ProgressBar(minimum=1, disable=not progress):
         intermediate = compute_diff(df, x=x, cfg=cfg, dtype=dtype)
