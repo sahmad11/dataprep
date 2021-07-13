@@ -1487,6 +1487,19 @@ test = ["coverage (>=5,<6)", "pytest (>=5,<6)", "pytest-xdist (>=1,<2)", "pytest
 
 [[package]]
 category = "main"
+description = "Python module to handle standardized numbers and codes"
+name = "python-stdnum"
+optional = false
+python-versions = "*"
+version = "1.16"
+
+[package.extras]
+soap = ["zeep"]
+soap-alt = ["suds"]
+soap-fallback = ["pysimplesoap"]
+
+[[package]]
+category = "main"
 description = "World timezone definitions, modern and historical"
 name = "pytz"
 optional = false
@@ -2115,7 +2128,7 @@ docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "pytest-enabler", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "24aff3f9608f5e649d18bcfbc7f74a71dd84a0de2004ac1ceaa278b3a50ce3fa"
+content-hash = "bb7eef61705afb7fd92af9145f74ace235e7c2bd5a5e8228cee6853b0c854ad1"
 python-versions = "^3.6.1"
 
 [metadata.files]
@@ -3054,6 +3067,10 @@ python-gitlab = [
 python-semantic-release = [
     {file = "python-semantic-release-7.15.1.tar.gz", hash = "sha256:1f9a5b22964154a4587b1801d4d802c7f0d0d387ce4d9d64c089f895b9fb9b01"},
     {file = "python_semantic_release-7.15.1-py3-none-any.whl", hash = "sha256:d3cb3d07c81e2bacbd74d014265b89b8ce5b144d3ac567cdfd76fc5369638ba8"},
+]
+python-stdnum = [
+    {file = "python-stdnum-1.16.tar.gz", hash = "sha256:4248d898042a801fc4eff96fbfe4bf63a43324854efe3b5534718c1c195c6f43"},
+    {file = "python_stdnum-1.16-py2.py3-none-any.whl", hash = "sha256:2e2c56c548ca166b95547a8d748f4d71320a5b4896960717c8e6380e08d993a5"},
 ]
 pytz = [
     {file = "pytz-2021.1-py2.py3-none-any.whl", hash = "sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798"},

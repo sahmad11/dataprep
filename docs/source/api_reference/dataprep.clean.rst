@@ -90,3 +90,11 @@ US Street Addresses
    :members:
    :undoc-members:
    :show-inheritance:
+
+ISBN Strings
+-------------------
+
+.. automodule:: dataprep.clean.clean_isbn
+   :members:
+   :undoc-members:
+   :show-inheritance:
