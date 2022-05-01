@@ -1,6 +1,6 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1631949054845,
-  "repoUrl": "https://github.com/sfu-db/dataprep",
+  "lastUpdate": 1651398809285,
+  "repoUrl": "https://github.com/sahmad11/dataprep",
   "entries": {
     "DataPrep.EDA Benchmarks": [
       {
@@ -186,6 +186,37 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.1333391852454711",
             "extra": "mean: 6.358404998399988 sec\nrounds: 5"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "yixuy@sfu.ca",
+            "name": "henryye",
+            "username": "yixuy"
+          },
+          "committer": {
+            "email": "qidanrui@gmail.com",
+            "name": "Danrui Qi",
+            "username": "qidanrui"
+          },
+          "distinct": true,
+          "id": "0686ff56e9b2f0fabac5d34919cdf19476bf0a5c",
+          "message": "feat(clean) add more clean_phone prefix",
+          "timestamp": "2022-04-28T08:21:32-07:00",
+          "tree_id": "665354f0b662d5ada8b5189dfacfd2167840ef1b",
+          "url": "https://github.com/sahmad11/dataprep/commit/0686ff56e9b2f0fabac5d34919cdf19476bf0a5c"
+        },
+        "date": 1651398808234,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "dataprep/tests/benchmarks/eda.py::test_create_report",
+            "value": 0.19796629070394958,
+            "unit": "iter/sec",
+            "range": "stddev: 0.07661792299864384",
+            "extra": "mean: 5.051365040199994 sec\nrounds: 5"
           }
         ]
       }
